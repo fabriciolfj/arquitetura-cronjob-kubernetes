@@ -4,6 +4,7 @@
     - receberá uma transação, seja: pagamento, transferencia etc
     - enviara a transação para avalição se há fraude
     - a transação terá status 
-    - existirá uma rota que será chamada via job, onde colocará em no topic fraude as transações pendentes 
+ - transação job
+    - colocará em no topic fraude as transações pendentes 
   - fraudes service
     - analise das transações.  

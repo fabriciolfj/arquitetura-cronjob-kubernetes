@@ -7,3 +7,5 @@
     - analisar se há fraude nas transações.
   - transação job
     - colocará em no topic fraude as transações pendentes 
+
+![alt text](https://github.com/fabriciolfj/arquitetura-cronjob-kubernetes/blob/main/arquitetura.png)

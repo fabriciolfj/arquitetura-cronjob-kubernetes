@@ -16,6 +16,6 @@ public class Transaction {
     private String uuid;
     private String describe;
     private BigDecimal value;
-    private TypeTransaction type;
+    private TypePayment type;
     private TransactionStatus status;
 }

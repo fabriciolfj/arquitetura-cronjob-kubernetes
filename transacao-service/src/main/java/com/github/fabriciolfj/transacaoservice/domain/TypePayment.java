@@ -7,16 +7,16 @@ import java.util.stream.Stream;
 
 @Getter
 @AllArgsConstructor
-public enum TypeTransaction {
+public enum TypePayment {
 
-    DEBIT("debit"), CREDIT("credit"), OTHER("other");
+    CARD_VISA("cardVisa"), TICKET("ticket"), CARD_MASTER("cardMaster");
 
     private String describe;
 
     public static void toType(final String type) {
-        Stream.of(TypeTransaction.values())
+        Stream.of(TypePayment.values())
                 .filter(t -> t.getDescribe().equalsIgnoreCase(type))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Type not found: " + type));
+                .orElseThrow(() -> new IllegalArgumentException("Type payment not found: " + type));
     }
 }

@@ -3,10 +3,8 @@ package com.github.fabriciolfj.fraudesservice.controller;
 import com.github.fabriciolfj.fraudesservice.controller.dto.FraudRequestDTO;
 import com.github.fabriciolfj.fraudesservice.controller.dto.FraudResponseDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
 
@@ -18,6 +16,7 @@ public class FraudController {
     private final Random random = new Random();
 
     @PutMapping
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public FraudResponseDTO update(@RequestBody final FraudRequestDTO dto) {
         if (random.nextInt() % 2 == 0) {
             return FraudResponseDTO

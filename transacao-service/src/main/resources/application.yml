@@ -1,0 +1,49 @@
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  application:
+    name: transaction-service
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 3
+      idle-timeout: 1000
+    url: jdbc:mysql://localhost:3306/transactions?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
+
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    accept-count: 100
+    connection-timeout: 2000
+    max-connections: 8192
+    threads:
+      max: 200
+      min-spare: 20
+
+fraud.url: http://localhost:9090/api/v1/fraud

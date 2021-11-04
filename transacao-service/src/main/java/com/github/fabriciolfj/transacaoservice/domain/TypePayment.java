@@ -1,5 +1,6 @@
 package com.github.fabriciolfj.transacaoservice.domain;
 
+import com.github.fabriciolfj.transacaoservice.domain.exceptions.domain.TypePaymentException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,10 +14,10 @@ public enum TypePayment {
 
     private String describe;
 
-    public static void toType(final String type) {
-        Stream.of(TypePayment.values())
+    public static TypePayment toType(final String type) {
+        return Stream.of(TypePayment.values())
                 .filter(t -> t.getDescribe().equalsIgnoreCase(type))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Type payment not found: " + type));
+                .orElseThrow(() -> new TypePaymentException());
     }
 }

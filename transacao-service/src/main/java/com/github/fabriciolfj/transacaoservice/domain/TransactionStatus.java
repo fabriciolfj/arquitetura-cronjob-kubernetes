@@ -1,5 +1,6 @@
 package com.github.fabriciolfj.transacaoservice.domain;
 
+import com.github.fabriciolfj.transacaoservice.domain.exceptions.StatusTransactionException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -17,6 +18,6 @@ public enum TransactionStatus {
         return Stream.of(TransactionStatus.values())
                 .filter(t ->  t.getDescribe().equalsIgnoreCase(status))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Status not found: " + status));
+                .orElseThrow(() -> new StatusTransactionException());
     }
 }

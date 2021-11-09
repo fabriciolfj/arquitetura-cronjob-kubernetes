@@ -11,5 +11,8 @@
     - avaliar se a transação não possui algum suspeito
   - pagamento
     - efetuar o pagamento da transação.
+- todo
+  - montar o contexto map
+  - atualizar o desenho da solução. 
 
 ![alt text](https://github.com/fabriciolfj/arquitetura-cronjob-kubernetes/blob/main/arquitetura.png)

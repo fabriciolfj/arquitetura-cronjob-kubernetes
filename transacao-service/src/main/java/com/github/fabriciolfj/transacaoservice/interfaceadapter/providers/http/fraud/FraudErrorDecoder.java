@@ -17,7 +17,7 @@ public class FraudErrorDecoder implements ErrorDecoder {
                 return new TransactionNotFoundException();
             default:
                 log.error("Fail consumer fraud. Details: {}, status: {}, msg: {}", response.body(), response.status(), describe);
-                throw new InfrastructureException();
+                return new InfrastructureException();
         }
     }
 }

@@ -1,5 +1,14 @@
 version: "3.3"
 services:
+  fraud:
+    image: fabricio211/fraudes-service:0.0.1-SNAPSHOT
+    ports:
+      - 8082:9090
+
+  payment:
+    image: fabricio211/payment-service:0.0.1-SNAPSHOT
+    ports:
+      - 8083:8080
 
   mysql:
     image: mysql:5.7.35

@@ -11,6 +11,9 @@ public enum Errors {
     T_004,
     T_005,
     T_006,
+    T_007,
+    T_008,
+    T_009,
     T_999;
 
     public String getMessage(final Locale messageLocale) {

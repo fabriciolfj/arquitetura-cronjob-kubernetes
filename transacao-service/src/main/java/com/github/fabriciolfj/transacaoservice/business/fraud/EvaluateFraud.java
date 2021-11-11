@@ -1,4 +1,4 @@
-package com.github.fabriciolfj.transacaoservice.business.transaction;
+package com.github.fabriciolfj.transacaoservice.business.fraud;
 
 import com.github.fabriciolfj.transacaoservice.domain.Transaction;
 

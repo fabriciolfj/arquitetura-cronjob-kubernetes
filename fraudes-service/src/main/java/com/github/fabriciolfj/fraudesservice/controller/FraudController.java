@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Random;
 
 @RestController
-@RequestMapping("/api/v1/fraud")
+@RequestMapping("/api/v1/frauds")
 @RequiredArgsConstructor
 public class FraudController {
 
     private final Random random = new Random();
 
     @PutMapping
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.OK)
     public FraudResponseDTO update(@RequestBody final FraudRequestDTO dto) {
         if (random.nextInt() % 2 == 0) {
             return FraudResponseDTO

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Builder
@@ -20,18 +21,16 @@ public class TransactionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "describe_transaction", nullable = true)
+    @Column(name = "describe_transaction", nullable = false)
     private String describe;
-    @Column(name = "value", nullable = true)
+    @Column(name = "value", nullable = false)
     private BigDecimal value;
-    @Column(name = "type", nullable = true)
-    private String type;
     @Column(name = "status", nullable = false)
     private String status;
     @Column(name = "uuid", unique = true, nullable = false)
     private String uuid;
-    @Column(name = "payment_status", nullable = false)
-    private String paymentStatus;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "transaction")
+    private List<PaymentEntity> payments;
     @Column(name = "date_transaction", nullable = false)
     private String date;
 }

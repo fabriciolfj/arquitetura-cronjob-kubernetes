@@ -46,4 +46,5 @@ server:
       max: 200
       min-spare: 20
 
-fraud.url: http://localhost:9090/api/v1/fraud
+fraud.url: http://localhost:8082/api/v1/frauds
+payment.url: http://localhost:8083/api/v1/payments

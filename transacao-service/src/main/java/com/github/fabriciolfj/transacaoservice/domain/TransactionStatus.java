@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public enum TransactionStatus {
 
-    INVALID("invalid"), VALID("valid");
+    INVALID("invalid"), VALID("valid"), CANCELED("canceled");
 
     private String describe;
 

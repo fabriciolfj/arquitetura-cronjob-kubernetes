@@ -1,6 +1,6 @@
 package com.github.fabriciolfj.transacaoservice.interfaceadapter.gateway;
 
-import com.github.fabriciolfj.transacaoservice.business.transaction.EvaluateFraud;
+import com.github.fabriciolfj.transacaoservice.business.fraud.EvaluateFraud;
 import com.github.fabriciolfj.transacaoservice.domain.Transaction;
 import com.github.fabriciolfj.transacaoservice.interfaceadapter.providers.http.fraud.FraudClient;
 import com.github.fabriciolfj.transacaoservice.interfaceadapter.providers.http.fraud.mapper.FraudRequestDTOMapper;

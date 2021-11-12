@@ -1,8 +1,8 @@
-package com.github.fabriciolfj.transacaoservice.interfaceadapter.gateway;
+package com.github.fabriciolfj.transacaoservice.interfaceadapter.gateway.impl;
 
-import com.github.fabriciolfj.transacaoservice.business.payment.RegistryPayment;
 import com.github.fabriciolfj.transacaoservice.domain.Payment;
 import com.github.fabriciolfj.transacaoservice.domain.TypePayment;
+import com.github.fabriciolfj.transacaoservice.interfaceadapter.gateway.MeansPaymentGateway;
 import com.github.fabriciolfj.transacaoservice.interfaceadapter.providers.http.payment.PaymentClient;
 import com.github.fabriciolfj.transacaoservice.interfaceadapter.providers.http.payment.mapper.PaymentRequestDTOMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,19 +12,19 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PaymentMasterGateway implements RegistryPayment {
+public class PaymentTicketGateway implements MeansPaymentGateway {
 
     private final PaymentClient client;
 
     @Override
     public TypePayment getType() {
-        return TypePayment.CARD_MASTER;
+        return TypePayment.TICKET;
     }
 
     @Override
     public boolean execute(final Payment payment, final String transaction) {
-        final var response = client.executeCard(PaymentRequestDTOMapper.toRequest(payment, transaction));
-        log.info("Response master: {}", response);
+        final var response = client.executeTicket(PaymentRequestDTOMapper.toRequest(payment, transaction));
+        log.info("Response ticket: {}", response);
 
         return response.isApproved();
     }

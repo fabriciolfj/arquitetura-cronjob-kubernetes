@@ -1,9 +1,9 @@
-package com.github.fabriciolfj.transacaoservice.business.payment;
+package com.github.fabriciolfj.transacaoservice.interfaceadapter.gateway;
 
 import com.github.fabriciolfj.transacaoservice.domain.Payment;
 import com.github.fabriciolfj.transacaoservice.domain.TypePayment;
 
-public interface RegistryPayment {
+public interface MeansPaymentGateway {
 
     TypePayment getType();
 

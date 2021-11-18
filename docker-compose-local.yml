@@ -1,0 +1,46 @@
+version: "3.3"
+services:
+  fraud:
+    image: fabricio211/fraudes-service:0.0.1-SNAPSHOT
+    ports:
+      - 8082:9090
+
+  payment:
+    image: fabricio211/payment-service:0.0.1-SNAPSHOT
+    ports:
+      - 8083:8080
+
+  mysql:
+    image: mysql:5.7.35
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 60
+
+  zookeeper:
+    image: debezium/zookeeper:1.1
+    ports:
+      - 2181:2181
+      - 2888:2888
+      - 3888:3888
+
+  kafka:
+    image: debezium/kafka:1.1
+    ports:
+      - 9092:9092
+    links:
+      - zookeeper
+    environment:
+      - ZOOKEEPER_CONNECT=zookeeper:2181
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"

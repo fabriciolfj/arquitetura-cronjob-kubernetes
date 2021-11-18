@@ -1,0 +1,12 @@
+{{- define "common.configmap_from_file" -}} #declara o modelo reutilizavel
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.fullname" . }} #nome do configmap, usa a logica do helpers.tpl
+  labels:
+    app.kubernetes.io/name: {{ include "common.name" . }}
+    helm.sh/chart: {{ include "common.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }} #quando a origem da criacao for helm, usamos app.kubernetes.io/managed-by
+data:
+{{ (.Files.Glob "config-repo/*").AsConfig | indent 2 }} #funcao Files.Glob, usada para pegar todos os arquivos do configmap,
+{{- end -}} #AsConfig | indent 2 e utilizado para formatar o arquivo como yml

@@ -1,0 +1,22 @@
+fullnameOverride: transacao-service
+
+image:
+  name: transacao-service
+
+env:
+  SPRING_CONFIG_LOCATION: file:/config-repo/application.yml
+
+livenessProbe_enabled: true
+
+readinessProbe_enabled: true
+
+configmap:
+  enabled: true
+  volumeMounts:
+    mountPath: /config-repo
+
+annotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "4004"
+  prometheus.io/scheme: http
+  prometheus.io/path: "/actuator/prometheus"

@@ -1,0 +1,37 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: microservices-on-certificate
+spec:
+  commonName: microservices.me
+  subject:
+    countries:
+    - my-country
+    localities:
+    - my-locality
+    organizationalUnits:
+    - my-ou
+    organizations:
+    - my-org
+    postalCodes:
+    - my-pc
+    provinces:
+    - my-province
+    serialNumber: my-sn
+    streetAddresses:
+    - my-address
+  dnsNames:
+  - microservices.me
+  - health.microservices.me
+  - dashboard.microservices.me
+  - kiali.microservices.me
+  - tracing.microservices.me
+  - prometheus.microservices.me
+  - grafana.microservices.me
+  - kibana.microservices.me
+  - elasticsearch.microservices.me
+  - mail.microservices.me
+  issuerRef:
+    name: ca-issuer
+  secretName: microservices-on-certificate
+

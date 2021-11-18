@@ -1,0 +1,59 @@
+server:
+  port: 80
+  shutdown: graceful
+  tomcat:
+    accept-count: 100
+    connection-timeout: 2000
+    max-connections: 8192
+    threads:
+      max: 200
+      min-spare: 20
+
+spring:
+  sleuth.sampler.percentage: 1
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  application:
+    name: transaction-service
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 3
+      idle-timeout: 1000
+    url: jdbc:mysql://192.168.58.1:3306/transactions?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+
+
+management:
+  health:
+    probes:
+      enabled: true
+  server:
+    port: 4004
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
+
+fraud.url: http://fraude-service/api/v1/frauds
+payment.url: http://payment-service/api/v1/payments

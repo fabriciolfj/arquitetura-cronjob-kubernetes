@@ -1,0 +1,23 @@
+apiVersion: v2
+appVersion: "1.0"
+description: A Helm chart for microservices
+name: dev-env
+version: 1.0.0
+
+dependencies:
+
+  - name: common
+    version: 1.0.0
+    repository: file://../../common
+
+  - name: fraude-service
+    version: 1.0.0
+    repository: file://../../components/fraude-service
+
+  - name: payment-service
+    version: 1.0.0
+    repository: file://../../components/payment-service
+
+  - name: transacao-service
+    version: 1.0.0
+    repository: file://../../components/transacao-service

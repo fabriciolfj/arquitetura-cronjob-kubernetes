@@ -1,0 +1,14 @@
+secrets:
+
+  mysql-credentials:
+    SPRING_DATASOURCE_USERNAME: root
+    SPRING_DATASOURCE_PASSWORD: root
+
+transacao-service:
+  envFromSecretRefs:
+    - mysql-credentials
+
+destinationRules:
+  - name: fraude-service
+  - name: payment-service
+  - name: transacao-service

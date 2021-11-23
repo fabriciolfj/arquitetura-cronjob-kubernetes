@@ -21,20 +21,20 @@ public class TransactionCase {
     private final PaymentCase paymentCase;
 
     public void execute(final Transaction transaction) {
-        validations.stream().forEach(v -> v.execute(transaction));
-
         final var transactionUpdated = fraudeCase.execute(transaction);
+
+        validations.stream().forEach(v -> v.execute(transaction));
 
         transactionUpdated.setPayments(updatePayments(transactionUpdated));
 
         registerTransaction.save(transactionUpdated);
     }
 
-    private List<Payment> updatePayments(final Transaction transactionUpdated) {
-        return transactionUpdated
+    private List<Payment> updatePayments(final Transaction transaction) {
+        return transaction
                 .getPayments()
                 .stream()
-                .map(pay -> paymentCase.execute(pay, transactionUpdated.getUuid()))
+                .map(pay -> paymentCase.execute(pay, transaction.getUuid()))
                 .collect(Collectors.toList());
     }
 

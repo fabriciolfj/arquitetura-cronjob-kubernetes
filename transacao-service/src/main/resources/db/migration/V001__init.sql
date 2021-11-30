@@ -7,7 +7,7 @@ uuid varchar(100) not null,
 date_transaction varchar(50) not null,
 constraint pk_transaction primary key (id),
 unique(uuid)
-)engine=InnoDB default charset=utf8;
+);
 
 create table payment (
 id bigint not null auto_increment,
@@ -17,4 +17,4 @@ type varchar(30) not null,
 transaction_id bigint not null,
 constraint fk_transaction foreign key (transaction_id) references transaction(id),
 constraint pk_payment primary key (id)
-)engine=InnoDB default charset=utf8;
+);

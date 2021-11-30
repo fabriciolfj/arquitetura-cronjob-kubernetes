@@ -1,36 +1,19 @@
 version: "3.3"
 services:
-  mysql:
-    image: mysql:5.7.35
-    command: --lower_case_table_names=1
+
+  transacao:
+    image: fabricio211/transacao-service
+    ports:
+      - 8080:8080
     environment:
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
-    ports:
-      - 3306:3306
-    healthcheck:
-      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
-      interval: 5s
-      timeout: 2s
-      retries: 60
+      - JAVA_OPTS=-Dspring.profiles.active=test
 
-  zookeeper:
-    image: debezium/zookeeper:1.1
+  fraud:
+    image: fabricio211/fraude-service
     ports:
-      - 2181:2181
-      - 2888:2888
-      - 3888:3888
+      - 8082:8082
 
-  kafka:
-    image: debezium/kafka:1.1
+  payment:
+    image: fabricio211/payment-service
     ports:
-      - 9092:9092
-    links:
-      - zookeeper
-    environment:
-      - ZOOKEEPER_CONNECT=zookeeper:2181
-
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
+      - 8083:8083

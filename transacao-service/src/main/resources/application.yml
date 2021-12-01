@@ -20,17 +20,20 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL57Dialect
 
-
 management:
   health:
     probes:
       enabled: true
+      show-details: always
   server:
     port: 4004
   endpoints:
     web:
       exposure:
         include: "*"
+    jmx:
+      exposure:
+        include: '*'
   metrics:
     tags:
       application: ${spring.application.name}
